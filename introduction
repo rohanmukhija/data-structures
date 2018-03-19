@@ -1,0 +1,2 @@
+In computer science, a data structure is a particular way of organizing and storing data in a computer so that it can be accessed and modified efficiently
+Data structures can implement one or more particular abstract data types (ADT), which specify the operations that can be performed on a data structure and the computational complexity of those operations. In comparison, a data structure is a concrete implementation of the space provided by an ADT
