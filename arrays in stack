@@ -1,0 +1,27 @@
+An array can be used to implement a (bounded) stack, as follows. The first element (usually at the zero offset) is the bottom, resulting in array[0] being the first element pushed onto the stack and the last element popped off. The program must keep track of the size (length) of the stack, using a variable top that records the number of items pushed so far, therefore pointing to the place in the array where the next element is to be inserted (assuming a zero-based index convention). Thus, the stack itself can be effectively implemented as a three-element structure:
+
+structure stack:
+    maxsize : integer
+    top : integer
+    items : array of item
+procedure initialize(stk : stack, size : integer):
+    stk.items ← new array of size items, initially empty
+    stk.maxsize ← size
+    stk.top ← 0
+The push operation adds an element and increments the top index, after checking for overflow:
+
+procedure push(stk : stack, x : item):
+    if stk.top = stk.maxsize:
+        report overflow error
+    else:
+        stk.items[stk.top] ← x
+        stk.top ← stk.top + 1
+Similarly, pop decrements the top index after checking for underflow, and returns the item that was previously the top one:
+
+procedure pop(stk : stack):
+    if stk.top = 0:
+        report underflow error
+    else:
+        stk.top ← stk.top − 1
+        r ← stk.items[stk.top]
+Using a dynamic array, it is possible to implement a stack that can grow or shrink as much as needed. The size of the stack is simply the size of the dynamic array, which is a very efficient implementation of a stack since adding items to or removing items from the end of a dynamic array requires amortized O(1) time.
