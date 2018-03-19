@@ -1,0 +1,23 @@
+In a circularly linked list, all nodes are linked in a continuous circle, without using null. For lists with a front and a back (such as a queue), one stores a reference to the last node in the list. The next node after the last node is the first node. Elements can be added to the back of the list and removed from the front in constant time.
+
+Circularly linked lists can be either singly or doubly linked.
+Both types of circularly linked lists benefit from the ability to traverse the full list beginning at any given node. This often allows us to avoid storing firstNode and lastNode, although if the list may be empty we need a special representation for the empty list, such as a lastNode variable which points to some node in the list or is null if it's empty; we use such a lastNode here. This representation significantly simplifies adding and removing nodes with a non-empty list, but empty lists are then a special case.
+Assuming that someNode is some node in a non-empty circular singly linked list, this code iterates through that list starting with someNode:
+
+ function iterate(someNode)
+   if someNode ≠ null
+     node := someNode
+     do
+       do something with node.value
+       node := node.next
+     while node ≠ someNode
+Notice that the test "while node ≠ someNode" must be at the end of the loop. If the test was moved to the beginning of the loop, the procedure would fail whenever the list had only one node.
+
+This function inserts a node "newNode" into a circular linked list after a given node "node". If "node" is null, it assumes that the list is empty.
+
+ function insertAfter(Node node, Node newNode)
+     if node = null
+       newNode.next := newNode
+     else
+       newNode.next := node.next
+       node.next := newNode
